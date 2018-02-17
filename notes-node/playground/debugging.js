@@ -1,4 +1,5 @@
 // use: node inspect app.js
+// or: node --inspect-brk app.js
 // works with nodemon!
 
 var person = {
