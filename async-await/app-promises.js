@@ -56,9 +56,34 @@ const getStatus = (userId) => {
   });
 };
 
-getStatus(123).then((status) => {
-  console.log(status);
+// () => {
+//   return new Promise((resolve, reject) => {
+//     resolve('Mike');
+//     reject('This is an error');
+//   });
+// };
+
+const getStatusAlt = async (userId) => {
+  const user = await getUser(userId);
+  const grades = await getGrades(user.schoolId);
+  let average = 0;
+
+  if (grades.length > 0) {
+    average = grades.map((grade) => grade.grade).reduce((a, b) => a + b) / grades.length;
+  }
+
+  return `${user.name} has a ${average}% in the class.`
+};
+
+getStatusAlt(1).then((name) => {
+  console.log(name);
 }).catch((e) => {
   console.log(e);
 });
+
+// getStatus(123).then((status) => {
+//   console.log(status);
+// }).catch((e) => {
+//   console.log(e);
+// });
 
